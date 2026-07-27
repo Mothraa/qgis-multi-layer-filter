@@ -1,0 +1,13 @@
+[general]
+name=Multi Layer Filter Toolbar
+qgisMinimumVersion=3.40
+qgisMaximumVersion=4.99
+description=Quickly filter multiple vector layers directly from the toolbar.
+about=This extension allows you to select multiple layers in the layer tree and apply a common expression filter to all of them in a single click. It includes a filter history and direct access to the QGIS expression builder.
+version=1.0.0
+author=Matthieu Lambert
+email=contact@akimeo.com
+repository=https://github.com/mothraa/qgis-multi-layer-filter
+tracker=https://github.com/mothraa/qgis-multi-layer-filter/issues
+tags=filter, vector, multi, query, subset
+icon=icon.png
