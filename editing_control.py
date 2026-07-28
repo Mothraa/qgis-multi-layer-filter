@@ -2,6 +2,8 @@ from qgis.core import QgsProject, QgsVectorLayer
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtWidgets import QMessageBox
 
+from .qt_utils import message_box_button_role, message_box_icon
+
 
 TRANSLATION_CONTEXT = "EditingControl"
 
@@ -59,7 +61,7 @@ class EditingControl:
         )
 
         msg = QMessageBox(self.iface.mainWindow())
-        msg.setIcon(QMessageBox.Warning)
+        msg.setIcon(message_box_icon("Warning"))
         msg.setWindowTitle(self.tr("Layers in editing mode"))
         msg.setText(
             self.tr(
@@ -71,17 +73,17 @@ class EditingControl:
 
         save_btn = msg.addButton(
             self.tr("Exit editing mode and save"),
-            QMessageBox.AcceptRole
+            message_box_button_role("AcceptRole")
         )
 
         discard_btn = msg.addButton(
             self.tr("Exit editing mode without saving"),
-            QMessageBox.DestructiveRole
+            message_box_button_role("DestructiveRole")
         )
 
         cancel_btn = msg.addButton(
             self.tr("Cancel"),
-            QMessageBox.RejectRole
+            message_box_button_role("RejectRole")
         )
 
         msg.exec()

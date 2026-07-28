@@ -1,10 +1,11 @@
 from qgis.core import (
     QgsProject, QgsVectorLayer,
-    QgsExpression, QgsMessageLog, Qgis
+    QgsExpression, QgsMessageLog
 )
 from qgis.PyQt.QtCore import QCoreApplication
 from qgis.PyQt.QtWidgets import QMessageBox
 
+from .qt_utils import qgis_message_level
 
 TRANSLATION_CONTEXT = "LayerFilterManager"
 
@@ -60,7 +61,7 @@ class LayerFilterManager:
                         'Layer "{layer_name}": invalid expression or missing field.'
                     ).format(layer_name=layer.name()),
                     "MultiLayerFilter",
-                    Qgis.Warning
+                    qgis_message_level("Warning")
                 )
 
                 continue
