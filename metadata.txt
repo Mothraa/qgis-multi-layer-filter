@@ -7,6 +7,7 @@ about=This extension allows you to select multiple layers in the layer tree and 
 version=1.0.0
 author=Matthieu Lambert
 email=contact@akimeo.com
+homepage=https://github.com/mothraa/qgis-multi-layer-filter
 repository=https://github.com/mothraa/qgis-multi-layer-filter
 tracker=https://github.com/mothraa/qgis-multi-layer-filter/issues
 tags=filter, vector, multi, query, subset
