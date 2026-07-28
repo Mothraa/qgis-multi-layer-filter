@@ -36,7 +36,7 @@ class QueryBuilder:
         if not layers:
             return None
 
-        names = [l.name() for l in layers]
+        names = [layer.name() for layer in layers]
 
         name, ok = QInputDialog.getItem(
             None,
