@@ -16,12 +16,12 @@ description[es]=Filtre rápidamente múltiples capas vectoriales directamente de
 description[it]=Filtra rapidamente più elementi vettoriali direttamente dalla barra degli strumenti.
 description[pt]=Filtre rapidamente várias camadas vetoriais diretamente da barra de ferramentas.
 
-about=This extension allows you to select multiple layers in the layer tree and apply a common expression filter to all of them in a single click. It includes a filter history and direct access to the QGIS expression builder.
-about[fr]=Cette extension vous permet de sélectionner plusieurs couches dans l'arbre des couches et de leur appliquer un filtre d'expression commun en un seul clic. Elle inclut un historique de filtrage et un accès direct au constructeur d'expressions QGIS.
-about[de]=Mit dieser Erweiterung können Sie mehrere Ebenen im Ebenenbaum auswählen und mit einem einzigen Klick einen gemeinsamen Ausdrucksfilter auf alle anwenden. Enthält einen Filterverlauf und direkten Zugriff auf den QGIS-Ausdrucksersteller.
-about[es]=Esta extensión le permite seleccionar múltiples capas en el árbol de capas y aplicar un filtro de expresión común a todas ellas con un solo clic. Incluye un historial de filtros y acceso directo al constructor de expresiones de QGIS.
-about[it]=Questa estensione consente di selezionare più livelli nell'albero dei livelli e applicare un filtro di espressione comune a tutti con un solo clic. Include una cronologia dei filtri e l'accesso diretto al costruttore di espressioni QGIS.
-about[pt]=Esta extensão permite selecionar várias camadas na árvore de camadas e aplicar um filtro de expressão comum a todas elas com um único clique. Inclui um histórico de filtros e acesso direto ao construtor de expressões do QGIS.
+about=This extension allows you to select multiple layers and apply a common expression filter to all of them in a single click. It includes a filter history and direct access to the QGIS expression builder.
+about[fr]=Cette extension vous permet de sélectionner plusieurs couches et de leur appliquer un filtre d'expression commun en un seul clic. Elle inclut un historique de filtrage et un accès direct au constructeur d'expressions QGIS.
+about[de]=Mit dieser Erweiterung können Sie mehrere Ebenen auswählen und mit einem einzigen Klick einen gemeinsamen Ausdrucksfilter auf alle anwenden. Enthält einen Filterverlauf und direkten Zugriff auf den QGIS-Ausdrucksersteller.
+about[es]=Esta extensión le permite seleccionar múltiples capas y aplicar un filtro de expresión común a todas ellas con un solo clic. Incluye un historial de filtros y acceso directo al constructor de expresiones de QGIS.
+about[it]=Questa estensione consente di selezionare più livelli e applicare un filtro di espressione comune a tutti con un solo clic. Include una cronologia dei filtri e l'accesso diretto al costruttore di espressioni QGIS.
+about[pt]=Esta extensão permite selecionar várias camadas e aplicar um filtro de expressão comum a todas elas com um único clique. Inclui um histórico de filtros e acesso direto ao construtor de expressões do QGIS.
 
 version=1.0.1
 changelog=1.0.1:
