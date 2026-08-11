@@ -1,15 +1,14 @@
-from qgis.PyQt.QtWidgets import (
-    QDialog, QVBoxLayout, QTreeWidget, QTreeWidgetItem,
-    QPushButton, QHBoxLayout
-)
-from qgis.PyQt.QtCore import Qt
+from qgis.PyQt.QtWidgets import (QDialog, QVBoxLayout, QTreeWidget,
+                                 QTreeWidgetItem, QPushButton, QHBoxLayout)
+from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (
-    QgsProject, QgsVectorLayer,
-    QgsLayerTreeGroup, QgsLayerTreeLayer
+QgsProject, QgsVectorLayer,
+QgsLayerTreeGroup, QgsLayerTreeLayer
 )
 
 from ..qt_utils import qt_check_state, qt_user_role, qt_item_flag
 
+TRANSLATION_CONTEXT = "LayerSelectionDialog"
 
 class LayerSelectionDialog(QDialog):
 
@@ -70,6 +69,12 @@ class LayerSelectionDialog(QDialog):
         buttons_layout.addWidget(validate_btn)
 
         layout.addLayout(buttons_layout)
+
+    def tr(self, message):
+        return QCoreApplication.translate(
+            TRANSLATION_CONTEXT,
+            message
+        )
 
     def get_selection(self):
         selection = set()
