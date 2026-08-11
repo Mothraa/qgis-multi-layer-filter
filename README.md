@@ -28,10 +28,10 @@ It includes a filter history and direct access to the QGIS expression builder.
 5. Click the clear button to remove the active filters
 
 # Changelog
+* 1.0.1 Added translations for French, German, Spanish, Italian, and Portuguese
 * 1.0.0 Initial Release
 
 # Planned Improvements
-* Add UI translation
 * Save selected layers in project file
 
 ## License
