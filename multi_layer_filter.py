@@ -84,7 +84,7 @@ class MultiLayerFilterToolbar:
         )
 
         expr_input = self.expr_combo.lineEdit()
-        expr_input.setPlaceholderText(self.tr('"field" = \'value\''))
+        expr_input.setPlaceholderText('"field" = \'value\'')
         expr_input.textChanged.connect(self._update_buttons)
         expr_input.returnPressed.connect(self._on_enter_pressed)
 
