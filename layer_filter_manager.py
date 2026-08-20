@@ -8,6 +8,8 @@ from qgis.PyQt.QtWidgets import QMessageBox
 from .qt_utils import qgis_message_level
 
 TRANSLATION_CONTEXT = "LayerFilterManager"
+PROJECT_SETTINGS_GROUP = "MultiLayerFilter"
+SELECTED_LAYER_IDS_KEY = "selected_layer_ids"
 
 
 class LayerFilterManager:
@@ -26,6 +28,40 @@ class LayerFilterManager:
             str: Translated message.
         """
         return QCoreApplication.translate(TRANSLATION_CONTEXT, message)
+
+    def save_selection(self, layer_ids):
+        """Save selected layer identifiers in the current project.
+
+        Args:
+            layer_ids (set): IDs of selected layers.
+        """
+        QgsProject.instance().writeEntry(
+            PROJECT_SETTINGS_GROUP,
+            SELECTED_LAYER_IDS_KEY,
+            sorted(layer_ids),
+        )
+
+    def restore_selection(self):
+        """Restore selected layer identifiers from the current project.
+
+        Returns:
+            set: IDs of existing selected vector layers.
+        """
+        project = QgsProject.instance()
+        layer_ids, found = project.readListEntry(
+            PROJECT_SETTINGS_GROUP,
+            SELECTED_LAYER_IDS_KEY,
+            [],
+        )
+
+        if not found:
+            return set()
+
+        return {
+            layer_id
+            for layer_id in layer_ids
+            if isinstance(project.mapLayer(layer_id), QgsVectorLayer)
+        }
 
     def apply(self, layer_ids, expr):
         """Apply filter expression to layers.

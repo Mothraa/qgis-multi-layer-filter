@@ -5,6 +5,7 @@ from qgis.PyQt.QtWidgets import (
     QWidget, QHBoxLayout, QSplitter,
 )
 from qgis.PyQt.QtCore import QSettings, QCoreApplication
+from qgis.core import QgsProject, QgsVectorLayer
 
 from .translation import install_translation, uninstall_translation
 from .ui.history import HistoryComboBox, HistoryManager
@@ -26,7 +27,7 @@ class MultiLayerFilterToolbar:
         self.layer_selection = set()
         self.settings = QSettings()
         self._has_active_filter = False
-        self.history_manager = None
+        self.history_manager: HistoryManager
         self.query_builder = QueryBuilder(self.iface)
         self.layer_filter_manager = LayerFilterManager(self.iface)
         self.editing_control = EditingControl(self.iface)
@@ -121,7 +122,25 @@ class MultiLayerFilterToolbar:
         self.history_manager = HistoryManager(self.expr_combo, self.settings)
         self.history_manager.refresh()
 
+        project = QgsProject.instance()
+        project.readProject.connect(self._restore_layer_selection)
+        project.cleared.connect(self._clear_layer_selection)
+        project.layersAdded.connect(self._update_config_action)
+        project.layersRemoved.connect(self._remove_deleted_layers)
+
+        self._restore_layer_selection()
+
     def unload(self):
+        project = QgsProject.instance()
+
+        try:
+            project.readProject.disconnect(self._restore_layer_selection)
+            project.cleared.disconnect(self._clear_layer_selection)
+            project.layersAdded.disconnect(self._update_config_action)
+            project.layersRemoved.disconnect(self._remove_deleted_layers)
+        except TypeError:
+            pass
+
         if self.toolbar:
             self.iface.mainWindow().removeToolBar(self.toolbar)
             self.toolbar.deleteLater()
@@ -162,6 +181,36 @@ class MultiLayerFilterToolbar:
         self.apply_action.setEnabled(bool(expr) and has_layers)
         self.clear_action.setEnabled(self._has_active_filter)
         self.builder_action.setEnabled(has_layers)
+
+    def _update_config_action(self, *args):
+        """Enable layer selection when vector layers are available."""
+        has_vector_layers = any(
+            isinstance(layer, QgsVectorLayer)
+            for layer in QgsProject.instance().mapLayers().values()
+        )
+        self.config_action.setEnabled(has_vector_layers)
+
+    def _restore_layer_selection(self, *args):
+        self.layer_selection = self.layer_filter_manager.restore_selection()
+        self._update_config_action()
+        self._update_buttons()
+
+    def _clear_layer_selection(self):
+        self.layer_selection = set()
+        self._has_active_filter = False
+        self._update_config_action()
+        self._update_buttons()
+
+    def _remove_deleted_layers(self, layer_ids):
+        self._update_config_action()
+        updated_selection = self.layer_selection.difference(layer_ids)
+
+        if updated_selection == self.layer_selection:
+            return
+
+        self.layer_selection = updated_selection
+        self.layer_filter_manager.save_selection(self.layer_selection)
+        self._update_buttons()
 
     def apply_filter(self):
 
@@ -222,4 +271,5 @@ class MultiLayerFilterToolbar:
 
         if dlg.exec():
             self.layer_selection = dlg.get_selection()
+            self.layer_filter_manager.save_selection(self.layer_selection)
             self._update_buttons()

@@ -23,9 +23,13 @@ about[es]=Esta extensión le permite seleccionar múltiples capas y aplicar un f
 about[it]=Questa estensione consente di selezionare più livelli e applicare un filtro di espressione comune a tutti con un solo clic. Include una cronologia dei filtri e l'accesso diretto al costruttore di espressioni QGIS.
 about[pt]=Esta extensão permite selecionar várias camadas e aplicar um filtro de expressão comum a todas elas com um único clique. Inclui um histórico de filtros e acesso direto ao construtor de expressões do QGIS.
 
-version=1.0.1
-changelog=1.0.1:
-    - Added translations for French, German, Spanish, Italian, and Portuguese
+version=1.1.0
+changelog=1.1.0:
+    - Save and restore selected layers in the QGIS project.
+    1.0.1:
+    - Added translations for French, German, Spanish, Italian and Portuguese
+    1.0.0:
+    - Initial release
 author=Matthieu Lambert
 email=contact@akimeo.com
 homepage=https://github.com/mothraa/qgis-multi-layer-filter
